@@ -58,6 +58,7 @@ class TCoRe(LightningModule):
                 param.requires_grad = False
 
     def forward(self, x):
+        # torch.save(x, "x.pt")
         batch_size = len(x["points"])
         template_points = []
         template_faces = []
@@ -152,6 +153,7 @@ class TCoRe(LightningModule):
             pt_mesh = meshes[batch_idx]
             pt_mesh = pt_mesh.filter_smooth_taubin(10)
             pt_mesh.compute_vertex_normals()
+            # o3d.io.write_triangle_mesh(f"output_mesh_{idx}_{batch_idx}.ply", pt_mesh)
             in_pcd = o3d.geometry.PointCloud()
             in_pcd.points = o3d.utility.Vector3dVector(x["points"][batch_idx])
             in_pcd.colors = o3d.utility.Vector3dVector(x["colors"][batch_idx])
@@ -288,7 +290,8 @@ class TCoRe(LightningModule):
         for batch_idx in range(len(outputs["offsets"])):
             pt = deformed_template[batch_idx]
             pt_mesh = o3d.geometry.TriangleMesh()
-            pt_mesh.vertices = o3d.utility.Vector3dVector(pt.cpu())
+            # pt_mesh.vertices = o3d.utility.Vector3dVector(pt.cpu())
+            pt_mesh.vertices = o3d.utility.Vector3dVector(pt.detach().cpu())
             pt_mesh.triangles = o3d.utility.Vector3iVector(
                 self.template_faces[0].cpu())
 
