@@ -1,0 +1,2 @@
+/media/pan/My_Passport/experiment_data/pull_leaf/plant_assets/test_obj_500/test_obj_-1/fruit_pcd_for_transformer.ply
+/media/pan/My_Passport/experiment_data/pull_leaf/plant_assets/test_obj_500/test_obj_-1/fit_unposed_mesh_transformer.ply
