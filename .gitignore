@@ -13,3 +13,5 @@ tcore.egg-info/
 ## downloaded content
 data/
 checkpoints/
+
+client_strs.txt
